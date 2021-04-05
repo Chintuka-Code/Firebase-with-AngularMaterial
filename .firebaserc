@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "curd-9bc1b": {
+      "hosting": {
+        "MaterialCURD": [
+          "curd-9bc1b"
+        ]
+      }
+    }
+  }
+}
