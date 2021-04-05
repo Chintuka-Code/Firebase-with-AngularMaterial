@@ -15,7 +15,7 @@ export class GlobalInterceptorInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(request);
+    console.log('Inter', request);
     return next.handle(request);
   }
 }

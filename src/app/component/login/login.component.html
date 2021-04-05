@@ -1,1 +1,94 @@
-<p>login works!</p>
+<div class="container">
+  <div class="row mt-3">
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="w-100">
+      <div class="col-12 from-group p-0">
+        <mat-form-field class="w-100">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Enter your Email"
+            formControlName="email"
+          />
+        </mat-form-field>
+        <div
+          *ngIf="myForm.controls.email.invalid && myForm.controls.email.touched"
+        >
+          <div
+            *ngIf="myForm.controls.email.errors.required"
+            class="invalid p-1"
+          >
+            Email is Required
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 from-group p-0">
+        <mat-form-field class="w-100">
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            type="button"
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 from-group p-0">
+        <ng-container formArrayName="skills">
+          <div *ngFor="let _ of skills.controls; index as i">
+            <div class="row m-0">
+              <div class="col-10 p-0">
+                <mat-form-field class="w-100">
+                  <input matInput [formControlName]="i" placeholder="Skills" />
+                </mat-form-field>
+              </div>
+              <div class="col-1 p-2">
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  aria-label="Example icon button with a filter list icon"
+                  (click)="addFeild()"
+                >
+                  <mat-icon>add_circle_outline</mat-icon>
+                </button>
+              </div>
+              <div class="col-1 p-2">
+                <button
+                  mat-mini-fab
+                  color="warn"
+                  aria-label="Example icon button with a filter list icon"
+                  (click)="remove(i)"
+                >
+                  <mat-icon>remove_circle_outline</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div>
+        <button mat-raised-button [disabled]="myForm.invalid">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div>
+  <h3>Response</h3>
+  <div *ngFor="let item of response | keyvalue">
+    <h4>
+      {{ item.key }} :- <span>{{ item.value }}</span>
+    </h4>
+  </div>
+</div>

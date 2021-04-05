@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GlobalInterceptorInterceptor } from './Interceptor/global-interceptor.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ShareModule } from './SharedModules/share/share.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +19,9 @@ import { GlobalInterceptorInterceptor } from './Interceptor/global-interceptor.i
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
